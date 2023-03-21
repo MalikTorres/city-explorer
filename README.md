@@ -22,7 +22,7 @@ This app allows users to search different cities and see their location
 
 # Data Flow
 
-![Data Flow](../img/DataFlow.jpg) 
+![Data Flow](/img/DataFlow.jpg) 
 
 
 Name of feature: Location API implementation

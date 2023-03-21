@@ -1,65 +1,97 @@
 import React from 'react';
 import axios from 'axios';
+import './App.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       // pokemonData: []
       city: '',
       cityData: {},
       errorMessage: ''
+      
     }
   }
 
 
-handleCItyInput = (event) => {
-  this.setState({
-    city: event.target.value
-  })
-
-}
-
-
-// ** async/await - handle our asynchronous code
-// ** try/catch - handle our errors - TRY resolve our success promises & CATCH handle rejected promises
-getCityData = async (event) => {
-  event.preventDefault()
-  try {
-
-    // TODO: Use axios to get the data from LocationIQ - using city in state
-    let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}format=json`
-  
-  
-    let cityDataFromAxios = await axios.get(url);
-    console.log(cityDataFromAxios.data[0]);
-    // TODO: Set State with the data that comes back from axios & set error boolean to false
+  handleCityInput = (event) => {
     this.setState({
-      cityData: cityDataFromAxios.data[0],
-      error:false
+      city: event.target.value
     })
-  } catch (error) {
-    this.setState({
-      error:true,
-      errorMessage: error.errorMessage
-    })
+
   }
-}
 
+  // ** async/await - handle our asynchronous code
+  // ** try/catch - handle our errors - TRY resolve our success promises & CATCH handle rejected promises
+  
+  
+  
+  getCityData = async (event) => {
+  
+    event.preventDefault()
+    
 
+    try {
+
+      // TODO: Use axios to get the data from LocationIQ - using city in state
+      let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
+
+      let cityDataFromAxios = await axios.get(url);
+     
+     
+      // TODO: Set State with the data that comes back from axios & set error boolean to false
+      this.setState({
+        cityData: cityDataFromAxios.data[0],
+        error: false,
+        mapUrl: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}`
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: error.message
+      })
+    }
+  }
+
+  // Latitude and Long 
 
   render() {
     return (
       <>
-        <h1>API CALLS</h1>
-        <form onSubmit={this.getCityData}>
-          <label> Enter a City:
-           <input type ="text" onChange={this.handleCItyInput}/>
-           </label><button type ="submit">Explore</button>
-      
-        </form>
+        
+        {/* <form onSubmit={this.getCityData}> */}
+        <Form onSubmit={this.getCityData}>
+          <Form.Group>
+          <Form.Label>Enter City</Form.Label>
+          <Form.Control onChange={this.handleCityInput}type="text"></Form.Control>
+        <Button type='submit' variant="primary">Explore!</Button>
+       
+        </Form.Group>
+        </Form>
+
         {/*Ternary -WTF*/}
-     
+          {
+            this.state.error
+
+            ?<Alert variant ='danger'>{this.state.errorMessage}</Alert>
+            : <div>
+                <Card style={{ width: '18rem' }}  border="info" ></Card>
+              <Card.Img style={{ width: '18rem' }} variant="top" src={this.state.mapUrl} alt={this.state.display_name}/>
+              <Card.Body>
+              <Card.Title>{this.state.cityData.display_name}</Card.Title>
+              <Card.Text>{this.state.cityData.lat}</Card.Text>
+              <Card.Text>{this.state.cityData.lon}</Card.Text>
+              </Card.Body>
+              <Card style={{ width: '18rem' }}>
+              </Card>
+             </div>
+          
+          }
       </>
     )
   }
@@ -98,3 +130,9 @@ export default App;
   //     pokemonData: pokemonData.data.results
   //   })
   // }
+
+
+  // OLD FORM
+  // <form onSubmit={this.getCityData}>
+  // <label> Enter a City:
+  //  <input type ="text" onChange={this.handleCItyInput}/>
