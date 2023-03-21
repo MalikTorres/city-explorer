@@ -31,6 +31,6 @@ Estimate of time needed to complete: 4 hours
 
 Start time: 5:53 PM EST
 
-Finish time: _____
+Finish time: 10:24 PM EST
 
-Actual time needed to complete: _____
+Actual time needed to complete: 4.11 minutes
