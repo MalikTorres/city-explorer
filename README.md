@@ -33,4 +33,4 @@ Start time: 5:53 PM EST
 
 Finish time: 10:24 PM EST
 
-Actual time needed to complete: 4 hours and eleven minutes
+Actual time needed to complete: 4.11 minutes
