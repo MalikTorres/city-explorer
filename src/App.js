@@ -13,6 +13,7 @@ class App extends React.Component {
       // pokemonData: []
       city: '',
       cityData: {},
+      error:false,
       errorMessage: ''
       
     }
@@ -39,6 +40,7 @@ class App extends React.Component {
     try {
 
       // TODO: Use axios to get the data from LocationIQ - using city in state
+      // Allows us to access the API data from axios
       let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
 
       let cityDataFromAxios = await axios.get(url);
@@ -56,7 +58,27 @@ class App extends React.Component {
         errorMessage: error.message
       })
     }
+  } 
+
+  /*
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    TODO: USE AXIOS TO HIT THE API(BACKEND)
+    TODO: SET THAT INFORMATION TO STATE
+    try {
+        let url = `${process.env.REACT_APP_SERVER}/weather?city={this.state.cityData}`
+
+        let petData = await axios.get(url);
+
+        console.log(citytData.data);
+    } catch (error {
+      console.log(error.message);
+    }
   }
+
+
+
+  */
 
   // Latitude and Long 
 
