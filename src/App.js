@@ -69,9 +69,9 @@ class App extends React.Component {
           <Form.Group>
           <Form.Label>Enter City</Form.Label>
           <Form.Control onChange={this.handleCityInput}type="text"></Form.Control>
-        <Button type='submit' variant="primary">Explore!</Button>
        
         </Form.Group>
+        <Button type='submit' variant="primary">Explore!</Button>
         </Form>
 
         {/*Ternary -WTF*/}
@@ -80,10 +80,10 @@ class App extends React.Component {
 
             ?<Alert variant ='danger'>{this.state.errorMessage}</Alert>
             : <div>
-                <Card style={{ width: '18rem' }}  border="info" ></Card>
-              <Card.Img style={{ width: '18rem' }} variant="top" src={this.state.mapUrl} alt={this.state.display_name}/>
+                <Card style={{ width: '50rem' }}  border="info" ></Card>
               <Card.Body>
               <Card.Title>{this.state.cityData.display_name}</Card.Title>
+              <Card.Img style={{ width: '18rem' }} src={this.state.mapUrl} alt={this.state.display_name}/>
               <Card.Text>{this.state.cityData.lat}</Card.Text>
               <Card.Text>{this.state.cityData.lon}</Card.Text>
               </Card.Body>
