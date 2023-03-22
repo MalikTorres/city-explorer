@@ -22,7 +22,7 @@ This app allows users to search different cities and see their location
 
 # Data Flow
 
-![Data Flow](/img/DataFlow.jpg) 
+![Data Flow](/img/ServerDataFlow.jpg) 
 
 
 Name of feature: Location API implementation
@@ -34,3 +34,14 @@ Start time: 5:53 PM EST
 Finish time: 10:24 PM EST
 
 Actual time needed to complete: 4.11 minutes
+
+Name of Feature: Building Server
+
+
+Estimate of time needed to complete: 4 hours
+
+Start time: 5:00 PM EST
+
+Finish time: 11:00 PM EST
+
+Actual time needed to complete: 6 hours
