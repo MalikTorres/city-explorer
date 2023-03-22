@@ -4,22 +4,42 @@ import React from 'react';
 
 class Weather extends React.Component {
   render() {
-    console.log(this.props.cityData[0].date);
     return (
-
-     <>
-     <h3>Weather Data</h3>
-{/* 
-    <p>{this.props.cityData[0].description}</p>  */}
-     </>
-
+      <>
+      {this.props.cityWeather.map((day,idx) => {
+        return (
+          <>
+          <p>{day.date}</p>
+          <p>{day.description}</p>
+          </>
+        )
+      })}
+      </>
     )
   }
-
-
-
-
 }
 
-
 export default Weather;
+
+    
+
+    // console.log(this.props.cityData[0].date); 
+
+
+
+
+// class Weather extends React.Component {
+//   render() {
+//     return(
+//       <>
+//       {this.props.cityWeather.map(day,idx)=> {
+//           return (
+//             <>
+
+//             </>
+//           )
+//       }}
+//       </>
+//     )
+//   }
+   

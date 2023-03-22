@@ -5,17 +5,18 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
-// import Weather from './Weather';
+ import Weather from './Weather';
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // pokemonData: []
       city: '',
-      cityData: [],
-      error:false,
+      cityData: {},
+      cityWeather: [],
+      error: false,
       errorMessage: ''
-      
+
     }
   }
 
@@ -29,13 +30,13 @@ class App extends React.Component {
 
   // ** async/await - handle our asynchronous code
   // ** try/catch - handle our errors - TRY resolve our success promises & CATCH handle rejected promises
-  
-  
-  
+
+
+
   getCityData = async (event) => {
-  
+
     event.preventDefault()
-    
+
 
     try {
 
@@ -44,8 +45,8 @@ class App extends React.Component {
       let url = `https://us1.locationiq.com/v1/search?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.city}&format=json`
 
       let cityDataFromAxios = await axios.get(url);
-     
-     
+
+
       // TODO: Set State with the data that comes back from axios & set error boolean to false
       this.setState({
         cityData: cityDataFromAxios.data[0],
@@ -59,28 +60,29 @@ class App extends React.Component {
         errorMessage: error.message
       })
     }
-  } 
+  }
 
 
 
 
-  
+
   handleGetTheWeather = async () => {
-  
+
     // TODO: USE AXIOS TO HIT THE API(BACKEND)
     // TODO: SET THAT INFORMATION TO STATE
     try {
       let url = `http://localhost:3001/weather?city_name=${this.state.city}`;
-        // let url =`${process.env.REACT_APP_SERVER}/weather?city_name=${this.state.city}`
+      // let url =`${process.env.REACT_APP_SERVER}/weather?city_name=${this.state.city}`
 
-        let cityData = await axios.get(url);
-        // console.log(typeof cityData.data);
-        this.setState({
-          weather: cityData.data 
-        })
+      let cityWeather = await axios.get(url);
+      // console.log(typeof cityData.data);
+      this.setState({
+        cityWeather: cityWeather.data,
+        error: false 
+      });
 
-       
-      
+
+
     } catch (error) {
       console.log(error.message);
     }
@@ -95,45 +97,47 @@ class App extends React.Component {
     // console.log(typeof this.state.cityData);
     return (
       <>
-        
+
         {/* <form onSubmit={this.getCityData}> */}
         <Form onSubmit={this.getCityData}>
           <Form.Group>
-          <Form.Label>Enter City</Form.Label>
-          <Form.Control onChange={this.handleCityInput}type="text"></Form.Control>
-       
-        </Form.Group>
-        <Button type='submit' variant="primary">Explore!</Button>
+            <Form.Label>Enter City</Form.Label>
+            <Form.Control onChange={this.handleCityInput} type="text"></Form.Control>
+
+          </Form.Group>
+          <Button type='submit' variant="primary">Explore!</Button>
         </Form>
-
+        
+        <Weather cityWeather={this.state.cityWeather} /> 
+       
         {/*Ternary -WTF*/}
-          {
-            this.state.error
+        {
+          this.state.error
 
-            ?<Alert variant ='danger'>{this.state.errorMessage}</Alert>
+            ? <Alert variant='danger'>{this.state.errorMessage}</Alert>
             : <div>
-                <Card style={{ width: '50rem' }}  border="info" ></Card>
+              <Card style={{ width: '50rem' }} border="info" ></Card>
               <Card.Body>
-              <Card.Title>{this.state.cityData.display_name}</Card.Title>
-              <Card.Img style={{ width: '18rem' }} src={this.state.mapUrl} alt={this.state.display_name}/>
-              <Card.Text>{this.state.cityData.lat}</Card.Text>
-              <Card.Text>{this.state.cityData.lon}</Card.Text>
+                <Card.Title>{this.state.cityData.display_name}</Card.Title>
+                <Card.Img style={{ width: '18rem' }} src={this.state.mapUrl} alt={this.state.display_name} />
+                <Card.Text>{this.state.cityData.lat}</Card.Text>
+                <Card.Text>{this.state.cityData.lon}</Card.Text>
               </Card.Body>
               <Card style={{ width: '18rem' }}>
               </Card>
 
 
-               {/* <Weather cityData={this.state.cityData}></Weather>  */}
-               
+              {/* <Weather cityData={this.state.cityData}></Weather>  */}
 
-              
-             
-              
-                
-      
-             </div>
-          
-          }
+
+
+
+
+
+
+            </div>
+
+        }
       </>
     )
   }
