@@ -5,14 +5,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
-
+// import Weather from './Weather';
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       // pokemonData: []
       city: '',
-      cityData: {},
+      cityData: [],
       error:false,
       errorMessage: ''
       
@@ -52,6 +52,7 @@ class App extends React.Component {
         error: false,
         mapUrl: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}`
       })
+      this.handleGetTheWeather();
     } catch (error) {
       this.setState({
         error: true,
@@ -60,29 +61,38 @@ class App extends React.Component {
     }
   } 
 
-  /*
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    TODO: USE AXIOS TO HIT THE API(BACKEND)
-    TODO: SET THAT INFORMATION TO STATE
+
+
+
+  
+  handleGetTheWeather = async () => {
+  
+    // TODO: USE AXIOS TO HIT THE API(BACKEND)
+    // TODO: SET THAT INFORMATION TO STATE
     try {
-        let url = `${process.env.REACT_APP_SERVER}/weather?city={this.state.cityData}`
+      let url = `http://localhost:3001/weather?city_name=${this.state.city}`;
+        // let url =`${process.env.REACT_APP_SERVER}/weather?city_name=${this.state.city}`
 
-        let petData = await axios.get(url);
+        let cityData = await axios.get(url);
+        // console.log(typeof cityData.data);
+        this.setState({
+          weather: cityData.data 
+        })
 
-        console.log(citytData.data);
-    } catch (error {
+       
+      
+    } catch (error) {
       console.log(error.message);
     }
   }
 
 
 
-  */
 
   // Latitude and Long 
 
   render() {
+    // console.log(typeof this.state.cityData);
     return (
       <>
         
@@ -111,6 +121,16 @@ class App extends React.Component {
               </Card.Body>
               <Card style={{ width: '18rem' }}>
               </Card>
+
+
+               {/* <Weather cityData={this.state.cityData}></Weather>  */}
+               
+
+              
+             
+              
+                
+      
              </div>
           
           }
