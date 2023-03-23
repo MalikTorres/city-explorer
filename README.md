@@ -5,7 +5,7 @@
 
 ## Overview
 
-This app allows users to search different cities and see their location
+This app is made with React and it allows users to search different cities and see their location
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
@@ -22,7 +22,7 @@ This app allows users to search different cities and see their location
 
 # Data Flow
 
-![Data Flow](/img/ServerDataFlow.jpg) 
+![Data Flow](./img/ServerDataFlow.jpg)
 
 
 Name of feature: Location API implementation
