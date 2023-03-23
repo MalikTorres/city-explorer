@@ -1,11 +1,16 @@
 .App {
-  text-align: center;
-  display:flex; 
+  /* text-align: center;
+  display:flex;  */
  
 }
 
+body {
+  background-color: aqua !important;
+}
+
 #root {
-  background-color:aliceblue ;
+  background-color:aliceblue  ;
+  margin-bottom: 300px;
 }
 .form-label {
   background-color: #61dafb;
@@ -13,7 +18,8 @@
 }
 
 .form-control{
-  margin-top: 100px;
+  margin-top: 500px;
+  text-shadow: #FC0 1px 0 10px;
 }
 .App-logo {
   height: 40vmin;
@@ -25,6 +31,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;
