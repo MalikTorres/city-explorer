@@ -22,7 +22,7 @@ This app is made with React and it allows users to search different cities and s
 
 # Data Flow
 
-![Data Flow](./img/ServerDataFlow.jpg)
+![Data Flow](/img/ServerDataFlow.png)
 
 
 Name of feature: Location API implementation
