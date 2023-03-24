@@ -112,8 +112,6 @@ class App extends React.Component {
   }
 
 
-
-
   // Latitude and Long 
 
   render() {

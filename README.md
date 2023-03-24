@@ -24,6 +24,9 @@ This app is made with React and it allows users to search different cities and s
 
 ![Data Flow](/img/ServerDataFlow.png)
 
+Update:
+
+![Data Flow](/img/Lab08flow.png)
 
 Name of feature: Location API implementation
 

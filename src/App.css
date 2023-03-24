@@ -1,8 +1,8 @@
-.App {
+/* .App {
   /* text-align: center;
   display:flex;  */
  
-}
+
 
 body {
   background-color: aqua !important;
@@ -33,7 +33,7 @@ body {
 }
 
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -56,4 +56,4 @@ body {
     transform: rotate(360deg);
   }
 }
- 
+  */
